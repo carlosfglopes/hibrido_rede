@@ -1,0 +1,156 @@
+services:
+  hibrido1:
+    image: hyperledger/besu:latest
+    container_name: hibrido1
+    volumes:
+      - ./networkFiles/genesis.json:/opt/besu/genesis.json
+      - ./nodes/hibrido1:/opt/besu/data
+    command:
+      - --data-path=/opt/besu/data
+      - --genesis-file=/opt/besu/genesis.json
+      - --sync-min-peers=1
+      - --rpc-http-enabled
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8545
+      - --rpc-http-api=ETH,NET,IBFT,ADMIN
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --p2p-port=30303
+      - --metrics-enabled
+      - --metrics-host=0.0.0.0
+      - --metrics-port=9545
+      - --logging=INFO
+    ports:
+      - "8745:8545"
+      - "30503:30303"
+      - "9745:9545"
+    networks:
+      hibrido-net:
+        ipv4_address: 10.88.2.11
+
+  hibrido2:
+    image: hyperledger/besu:latest
+    container_name: hibrido2
+    volumes:
+      - ./networkFiles/genesis.json:/opt/besu/genesis.json
+      - ./nodes/hibrido2:/opt/besu/data
+    command:
+      - --data-path=/opt/besu/data
+      - --genesis-file=/opt/besu/genesis.json
+      - --sync-min-peers=1
+      - --bootnodes=enode://fd09ef790f0511b5a215fa8489696011d521c0d36fa76fb6b8bbb38a0d5918be71507fe4f8410c80d46e4937a6be8fde31b6d2a13fb17c1896461976416cc980@10.88.2.11:30303
+      - --rpc-http-enabled
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8545
+      - --rpc-http-api=ETH,NET,IBFT,ADMIN
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --p2p-port=30303
+      - --metrics-enabled
+      - --metrics-host=0.0.0.0
+      - --metrics-port=9545
+      - --logging=INFO
+    ports:
+      - "8746:8545"
+      - "30504:30303"
+    networks:
+      hibrido-net:
+        ipv4_address: 10.88.2.12
+
+  hibrido3:
+    image: hyperledger/besu:latest
+    container_name: hibrido3
+    volumes:
+      - ./networkFiles/genesis.json:/opt/besu/genesis.json
+      - ./nodes/hibrido3:/opt/besu/data
+    command:
+      - --data-path=/opt/besu/data
+      - --genesis-file=/opt/besu/genesis.json
+      - --sync-min-peers=1
+      - --bootnodes=enode://fd09ef790f0511b5a215fa8489696011d521c0d36fa76fb6b8bbb38a0d5918be71507fe4f8410c80d46e4937a6be8fde31b6d2a13fb17c1896461976416cc980@10.88.2.11:30303
+      - --rpc-http-enabled
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8545
+      - --rpc-http-api=ETH,NET,IBFT,ADMIN
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --p2p-port=30303
+      - --metrics-enabled
+      - --metrics-host=0.0.0.0
+      - --metrics-port=9545
+      - --logging=INFO
+    ports:
+      - "8747:8545"
+      - "30505:30303"
+    networks:
+      hibrido-net:
+        ipv4_address: 10.88.2.13
+
+  hibrido4:
+    image: hyperledger/besu:latest
+    container_name: hibrido4
+    volumes:
+      - ./networkFiles/genesis.json:/opt/besu/genesis.json
+      - ./nodes/hibrido4:/opt/besu/data
+    command:
+      - --data-path=/opt/besu/data
+      - --genesis-file=/opt/besu/genesis.json
+      - --sync-min-peers=1
+      - --bootnodes=enode://fd09ef790f0511b5a215fa8489696011d521c0d36fa76fb6b8bbb38a0d5918be71507fe4f8410c80d46e4937a6be8fde31b6d2a13fb17c1896461976416cc980@10.88.2.11:30303
+      - --rpc-http-enabled
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8545
+      - --rpc-http-api=ETH,NET,IBFT,ADMIN
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --p2p-port=30303
+      - --metrics-enabled
+      - --metrics-host=0.0.0.0
+      - --metrics-port=9545
+      - --logging=INFO
+    ports:
+      - "8748:8545"
+      - "30506:30303"
+    networks:
+      hibrido-net:
+        ipv4_address: 10.88.2.14
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus-hibrido
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus-data:/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    ports:
+      - "9192:9090"
+    networks:
+      hibrido-net:
+        aliases:
+          - prometheus
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana-hibrido
+    ports:
+      - "3002:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=gollwitzer
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+    networks:
+      hibrido-net:
+        aliases:
+          - grafana
+
+networks:
+  hibrido-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.88.2.0/24
+          gateway: 10.88.2.1

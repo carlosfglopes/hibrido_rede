@@ -1,0 +1,29 @@
+# ─── Configuração do nó Besu — rede-hibrido ───────────────────
+# Fase 3 da Dissertação: Modelo Híbrido (FSM + UUPS Proxy)
+
+# Ficheiros de dados e chave do nó
+data-path      = "networkFiles/node1/data"
+node-private-key-file = "networkFiles/node1/key"
+
+# Genesis (gerado pelo comando generate-blockchain-config)
+genesis-file   = "networkFiles/genesis.json"
+
+# Rede P2P (nó único de desenvolvimento)
+p2p-enabled    = false
+
+# ─── RPC JSON ────────────────────────────────────────────────
+rpc-http-enabled   = true
+rpc-http-host      = "127.0.0.1"
+rpc-http-port      = 8547
+rpc-http-cors-origins = ["*"]
+rpc-http-api       = ["ETH","NET","QBFT","WEB3","MINER","TXPOOL","DEBUG"]
+
+# ─── WebSocket (opcional, para ferramentas externas) ─────────
+rpc-ws-enabled     = false
+
+# ─── Mineração / Validação ───────────────────────────────────
+miner-enabled      = true
+miner-coinbase     = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+
+# ─── Logs ────────────────────────────────────────────────────
+logging         = "INFO"

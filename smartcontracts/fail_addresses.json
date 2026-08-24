@@ -1,0 +1,9 @@
+{
+  "network": "rede-hibrido",
+  "deployedAt": "2026-08-03T20:10:40.772Z",
+  "implV1": "0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",
+  "proxy": "0x9B8397f1B0FEcD3a1a40CdD5E8221Fa461898517",
+  "version": "MissionFail-V2",
+  "implV2": "0x48b1dc3076A1c6d004B3B59d971FBE3B26b39124",
+  "upgradedAt": "2026-08-05T10:16:09.235Z"
+}

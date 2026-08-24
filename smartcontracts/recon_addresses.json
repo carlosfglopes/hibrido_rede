@@ -1,0 +1,9 @@
+{
+  "network": "rede-hibrido",
+  "deployedAt": "2026-08-03T20:10:32.440Z",
+  "implV1": "0x42699A7612A82f1d9C36148af9C77354759b210b",
+  "proxy": "0xa50a51c09a5c451C52BB714527E1974b686D8e77",
+  "version": "MissionRecon-V2",
+  "implV2": "0x9B1A300C50aeE1AE77AE67e69b6d4988Cd2Bb127",
+  "upgradedAt": "2026-08-05T10:16:00.810Z"
+}

@@ -1,0 +1,21 @@
+# Besu node data
+besu-rede-hibrido/nodes/
+besu-rede-hibrido/networkFiles/keys/
+
+# Runtime data
+besu-rede-hibrido/grafana-data/
+besu-rede-hibrido/prometheus-data/
+
+# Hardhat
+smartcontracts/artifacts/
+smartcontracts/cache/
+smartcontracts/node_modules/
+
+# Secrets
+smartcontracts/.env
+
+# Logs
+*.log
+# Python cache
+__pycache__/
+*.pyc
