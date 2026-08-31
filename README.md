@@ -18,12 +18,12 @@ export PRIVATE_KEY=0x...                 # authority account
 
 | File | What it does |
 |---|---|
-| `ERC1967ProxyWrapper.sol` | Compile-only wrapper so Hardhat compiles OpenZeppelin's `ERC1967Proxy`. |
-| `MissionFailV1.sol` | Failure-detection FSM logic, upgradeable via UUPS. |
+| `ERC1967ProxyWrapper.sol` | Compile wrapper so Hardhat compiles OpenZeppelin's `ERC1967Proxy`. |
+| `MissionFailV1.sol` | Failure detection FSM logic, upgradeable via UUPS. |
 | `MissionFailV2.sol` | Adds a mission/reputation score on top of V1. |
-| `MissionFormationV1.sol` | Formation-keeping FSM logic (centroid distance, violation/recovery voting), upgradeable via UUPS. |
+| `MissionFormationV1.sol` | Formation keeping FSM logic (centroid distance, violation/recovery voting), upgradeable via UUPS. |
 | `MissionFormationV2.sol` | Adds a formation health score on top of V1. |
-| `MissionReconV1.sol` | Reconnaissance leader-election FSM logic, upgradeable via UUPS. |
+| `MissionReconV1.sol` | Reconnaissance leader election FSM logic, upgradeable via UUPS. |
 | `MissionReconV2.sol` | Adds a scoring/confirmation layer on top of V1's election and report flow. |
 
 ## Scripts (`smartcontracts/scripts/`)
